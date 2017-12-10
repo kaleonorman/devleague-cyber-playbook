@@ -1,0 +1,126 @@
+@echo off
+
+CALL :Current
+CALL :MRU
+CALL :UserAssist
+CALL :Wireless
+CALL :LAN
+CALL :USB
+CALL :IE
+CALL :URL
+EXIT /B %ERRORLEVEL%
+
+:Current
+
+REM Current Settings In Autorun Registry Sections
+
+echo "HKLM\Software\Microsoft\Windows\CurrentVersion\Runonce" > Reg.txt
+
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion\Runonce >> Reg.txt
+
+echo "HKLM\Software\Microsoft\Windows\CurrentVersion\policies\Explorer\Run" >> Reg.txt
+
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion\policies\Explorer\Run >> Reg.txt
+
+echo "HKLM\Software\Microsoft\Windows\CurrentVersion\Run" >> Reg.txt
+
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion\Run >> Reg.txt
+
+echo "HKCU\Software\Microsoft\Windows NT\CurrentVersion\Windows\Run" >> Reg.txt
+
+reg query HKCU\Software\Microsoft\Windows NT\CurrentVersion\Windows\Run >> Reg.txt
+
+echo "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" >> Reg.txt
+
+reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Run >> Reg.txt
+
+echo "HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce" >> Reg.txt
+
+reg query HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce >> Reg.txt
+
+EXIT /B 0
+
+
+
+:MRU
+
+REM Recent Usage of MRU
+
+echo "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU" >> Reg.txt
+
+reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU >> Reg.txt
+
+EXIT /B 0
+
+
+
+:UserAssist
+
+REM All Subkeys of the UserAssist Key
+
+echo "HCU\Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist" >> Reg.txt
+
+reg query HCU\Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist >> Reg.txt
+
+EXIT /B 0
+
+
+
+:Wireless
+
+REM All wireless Networks and Settings that's been visited from this machine
+
+echo "HKLM\SOFTWARE\Microsoft\WZCSVC\Parameters\Interfaces" >> Reg.txt
+
+reg query HKLM\SOFTWARE\Microsoft\WZCSVC\Parameters\Interfaces >> Reg.txt
+
+echo "HKLM\SYSTEM\ControlSet001\Services\Tcpip\Parameters\Interfaces\" >> Reg.txt
+
+reg query HKLM\SYSTEM\ControlSet001\Services\Tcpip\Parameters\Interfaces\ >> Reg.txt
+
+EXIT /B 0
+
+
+:LAN
+
+REM Other LAN Devices this computer has access to
+
+echo "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\ComputerDescriptions" >> Reg.txt
+
+reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\ComputerDescriptions >> Reg.txt
+
+EXIT /B 0
+
+
+:USB
+
+REM USB Devices that's been connected to this computer
+
+echo "HKLM\SYSTEM\ControlSet00x\Enum\USBSTOR" >> Reg.txt
+
+reg query HKLM\SYSTEM\ControlSet00x\Enum\USBSTOR >> Reg.txt
+
+EXIT /B 0
+
+
+:IE
+
+REM Settings in Internet Explorer
+
+echo "HKCU\Software\Microsoft\Internet Explorer\Main" >> Reg.txt
+
+reg query "HKCU\Software\Microsoft\Internet Explorer\Main" >> Reg.txt
+
+EXIT /B 0
+
+
+:URL
+
+REM Any Types URL's a user has visited
+
+echo "HKCU\Software\Microsoft\Internet Explorer\TypedURLs" >> Reg.txt
+
+reg querty "HKCU\Software\Microsoft\Internet Explorer\TypedURLs" >> Reg.txt
+
+EXIT /B 0
+

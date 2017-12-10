@@ -1,0 +1,72 @@
+@echo off
+
+CALL :OS
+CALL :ENV
+CALL :NET
+CALL :START
+CALL :RUN
+CALL :SCH
+EXIT /B %ERRORLEVEL%
+
+:OS
+Rem System OS & Processor
+
+echo "System OS & Processor" > Test.txt
+
+systeminfo | findstr C:/"OS Name" >> Test.txt
+
+REM systeminfo | findstr C:/"Processor" >> Test.txt
+
+systeminfo | findstr C:/"System Type" >> Test.txt
+
+
+
+EXIT /B 0
+
+
+:ENV
+Rem Environment Variables
+
+echo "Environment Variables" >> Test.txt
+
+SET >> Test.txt
+
+echo.
+
+EXIT /B 0
+
+:NET
+Rem Network Configuration
+
+echo "Network Configuration" >> Test.txt
+
+ipconfig >> Test.txt
+
+EXIT /B 0
+
+
+REM :START
+REM echo "Startup Programs" >> Test.txt
+
+REM echo %userprofile%\Start Menu\Programs\Startup
+
+REM EXIT /B 0
+
+:RUN
+REM Running Processes
+
+echo "Running Processes" >> Test.txt
+
+tasklist >> Test.txt
+
+
+EXIT /B 0
+
+:SCH
+REM Scheduled Tasks
+
+echo "Scheduled Tasks" >> Test.txt
+
+schtasks >> Test.txt
+
+EXIT /B 0
